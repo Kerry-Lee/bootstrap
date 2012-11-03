@@ -48,7 +48,7 @@
       , affix
 
     if (typeof offset != 'object') offsetBottom = offsetTop = offset
-    if (typeof offsetTop == 'function') offsetTop = offset.top()
+    if (typeof offsetTop == 'function') { offsetTop = offset.top(); } else if (!this.affixed) { offsetTop = offset.top - this.$element.outerHeight(); }
     if (typeof offsetBottom == 'function') offsetBottom = offset.bottom()
 
     affix = this.unpin != null && (scrollTop + this.unpin <= position.top) ?
